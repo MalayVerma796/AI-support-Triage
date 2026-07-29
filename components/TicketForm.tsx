@@ -1,4 +1,4 @@
- 'use client'
+'use client'
 
 import { useState } from 'react'
 import { supabase } from '@/lib/supabase'
@@ -15,10 +15,20 @@ export default function TicketForm() {
     setSubmitting(true)
     setMessage('')
 
+    const categorizeRes = await fetch('/api/categorize', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ subject, body }),
+    })
+    const categorization = await categorizeRes.json()
+
     const { error } = await supabase.from('tickets').insert({
       subject,
       body,
       customer_email: email,
+      category: categorization.category,
+      urgency: categorization.urgency,
+      sentiment: categorization.sentiment,
     })
 
     if (error) {
