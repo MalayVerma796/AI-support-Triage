@@ -74,7 +74,11 @@ export default function TicketTable({ tickets }: { tickets: Ticket[] }) {
           </thead>
           <tbody>
             {filteredTickets.map((ticket) => (
-              <tr key={ticket.id} className="border-b hover:bg-gray-50">
+              <tr
+  key={ticket.id}
+  className="border-b hover:bg-gray-50 cursor-pointer"
+  onClick={() => (window.location.href = `/tickets/${ticket.id}`)}
+>
                 <td className="p-3">{ticket.subject}</td>
                 <td className="p-3">{ticket.category ?? '—'}</td>
                 <td className="p-3">
