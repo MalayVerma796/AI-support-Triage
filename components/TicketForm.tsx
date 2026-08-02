@@ -22,14 +22,30 @@ export default function TicketForm() {
     })
     const categorization = await categorizeRes.json()
 
-    const { error } = await supabase.from('tickets').insert({
-      subject,
-      body,
-      customer_email: email,
-      category: categorization.category,
-      urgency: categorization.urgency,
-      sentiment: categorization.sentiment,
-    })
+    const { data: insertedTicket, error } = await supabase
+      .from('tickets')
+      .insert({
+        subject,
+        body,
+        customer_email: email,
+        category: categorization.category,
+        urgency: categorization.urgency,
+        sentiment: categorization.sentiment,
+      })
+      .select()
+      .single()
+
+    if (!error && insertedTicket) {
+      fetch('/api/embed', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ticketId: insertedTicket.id,
+          subject,
+          body,
+        }),
+      })
+    }
 
     if (error) {
       setMessage(`Error: ${error.message}`)
