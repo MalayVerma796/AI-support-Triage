@@ -87,7 +87,7 @@ export default function TicketTable({ tickets }: { tickets: Ticket[] }) {
                 <td className="p-3">{ticket.sentiment ?? '—'}</td>
                 <td className="p-3">{ticket.status}</td>
                 <td className="p-3">
-                  {new Date(ticket.created_at).toLocaleDateString()}
+                  {new Date(ticket.created_at).toLocaleDateString('en-US')}
                 </td>
               </tr>
             ))}

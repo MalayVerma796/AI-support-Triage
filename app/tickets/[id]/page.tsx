@@ -40,7 +40,10 @@ export default async function TicketDetail({
       </div>
 
       <p className="text-xs text-gray-400">
-        Submitted {new Date(ticket.created_at).toLocaleString()}
+        Submitted {new Date(ticket.created_at).toLocaleString('en-US', {
+  dateStyle: 'medium',
+  timeStyle: 'short',
+})}
       </p>
     </main>
   )
