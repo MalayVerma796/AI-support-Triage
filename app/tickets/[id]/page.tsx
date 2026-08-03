@@ -1,3 +1,4 @@
+import ReplyDraft from '@/components/ReplyDraft'
 import { supabase } from '@/lib/supabase'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -88,6 +89,12 @@ export default async function TicketDetail({
           </div>
         </div>
       )}
+
+      <ReplyDraft
+        subject={ticket.subject}
+        body={ticket.body}
+        similarTickets={similarTickets}
+      />
     </main>
   )
 }
