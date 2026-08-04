@@ -59,6 +59,21 @@ const sampleTickets = [
     body: 'App crashes immediately after opening on my iPhone 15, started happening after the latest update.',
     customer_email: 'nina.p@example.com',
   },
+  {
+    subject: 'App loading extremely slow',
+    body: 'Every page takes 10+ seconds to load, started this week. Very frustrating.',
+    customer_email: 'chris.l@example.com',
+  },
+  {
+    subject: 'Cannot log into account',
+    body: 'Getting "invalid credentials" error even though my password is correct.',
+    customer_email: 'jamie.f@example.com',
+  },
+  {
+    subject: 'Wrong amount charged',
+    body: 'I was billed $49 instead of the $29 plan I signed up for.',
+    customer_email: 'ravi.k@example.com',
+  },
 ]
 
 async function categorize(subject: string, body: string) {
@@ -70,23 +85,37 @@ async function categorize(subject: string, body: string) {
   return res.json()
 }
 
+async function embed(ticketId: string, subject: string, body: string) {
+  await fetch('http://localhost:3000/api/embed', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ ticketId, subject, body }),
+  })
+}
+
 async function seed() {
   console.log(`Seeding ${sampleTickets.length} tickets...`)
 
   for (const ticket of sampleTickets) {
     const categorization = await categorize(ticket.subject, ticket.body)
 
-    const { error } = await supabase.from('tickets').insert({
-      ...ticket,
-      category: categorization.category,
-      urgency: categorization.urgency,
-      sentiment: categorization.sentiment,
-    })
+    const { data: insertedTicket, error } = await supabase
+      .from('tickets')
+      .insert({
+        ...ticket,
+        category: categorization.category,
+        urgency: categorization.urgency,
+        sentiment: categorization.sentiment,
+      })
+      .select()
+      .single()
 
     if (error) {
       console.error(`Failed to insert "${ticket.subject}":`, error.message)
     } else {
       console.log(`✓ Inserted: ${ticket.subject} [${categorization.category}, ${categorization.urgency}]`)
+      await embed(insertedTicket.id, ticket.subject, ticket.body)
+      console.log(`  → embedding generated`)
     }
 
     // small delay to avoid hitting rate limits back-to-back

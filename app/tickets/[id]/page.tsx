@@ -65,9 +65,12 @@ export default async function TicketDetail({
         })}
       </p>
 
-      {similarTickets.length > 0 && (
-        <div>
-          <h2 className="text-lg font-semibold mb-3">Similar Past Tickets</h2>
+      <div>
+        <h2 className="text-lg font-semibold mb-3">Similar Past Tickets</h2>
+        {similarTickets.length === 0 && (
+          <p className="text-sm text-gray-400 mb-4">No similar tickets found yet.</p>
+        )}
+        {similarTickets.length > 0 && (
           <div className="flex flex-col gap-3">
             {similarTickets.map((match) => (
               <Link
@@ -87,8 +90,8 @@ export default async function TicketDetail({
               </Link>
             ))}
           </div>
-        </div>
-      )}
+        )}
+      </div>
 
       <ReplyDraft
         subject={ticket.subject}
