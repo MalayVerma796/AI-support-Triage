@@ -1,4 +1,6 @@
 # AI Support Ticket Triage Dashboard
+ 🔗 **Live demo:** https://ai-support-triage-chi.vercel.app  
+Test login: `project@company.com` / `project123`
 
 An internal tool that uses an LLM to automatically categorize incoming support 
 tickets by type, urgency, and sentiment — helping support teams triage tickets 
