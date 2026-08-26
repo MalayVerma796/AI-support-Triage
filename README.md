@@ -31,6 +31,3 @@ faster without manual sorting.
 2. `npm install`
 3. Create a `.env.local` with your own Supabase and Groq API keys (see `.env.example`)
 4. `npm run dev`
-
-## Screenshots
-(add once dashboard is polished)
