@@ -1,7 +1,6 @@
 import { createClient } from "@/lib/supabase-server";
 import { redirect } from "next/navigation";
 import TicketTable from "@/components/TicketTable";
-import LogoutButton from "@/components/LogoutButton";
 
 export default async function Dashboard() {
   const supabase = await createClient();
@@ -52,9 +51,6 @@ export default async function Dashboard() {
               Review incoming issues, spot urgency at a glance, and move through
               your queue with less visual noise.
             </p>
-          </div>
-          <div className="sm:hidden">
-            <LogoutButton />
           </div>
         </div>
 
