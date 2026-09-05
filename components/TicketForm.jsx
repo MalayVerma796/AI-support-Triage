@@ -10,7 +10,7 @@ export default function TicketForm() {
   const [submitting, setSubmitting] = useState(false);
   const [message, setMessage] = useState("");
 
-  async function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e) {
     e.preventDefault();
     setSubmitting(true);
     setMessage("");

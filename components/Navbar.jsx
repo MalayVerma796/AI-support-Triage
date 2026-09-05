@@ -2,14 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import type { User } from "@supabase/supabase-js";
 import LogoutButton from "./LogoutButton";
 
-interface NavbarProps {
-  user: User | null;
-}
-
-export default function Navbar({ user }: NavbarProps) {
+export default function Navbar({ user }) {
   const pathname = usePathname();
 
   return (

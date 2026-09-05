@@ -2,17 +2,7 @@
 
 import { useState } from "react";
 
-type Ticket = {
-  id: string;
-  subject: string;
-  category: string | null;
-  urgency: string | null;
-  sentiment: string | null;
-  status: string;
-  created_at: string;
-};
-
-export default function TicketTable({ tickets }: { tickets: Ticket[] }) {
+export default function TicketTable({ tickets = [] }) {
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [urgencyFilter, setUrgencyFilter] = useState("all");
 
@@ -26,7 +16,7 @@ export default function TicketTable({ tickets }: { tickets: Ticket[] }) {
 
   const categories = Array.from(
     new Set(tickets.map((t) => t.category).filter(Boolean))
-  ) as string[];
+  );
 
   return (
     <section className="space-y-8">
@@ -144,7 +134,7 @@ export default function TicketTable({ tickets }: { tickets: Ticket[] }) {
   );
 }
 
-function UrgencyBadge({ urgency }: { urgency: string | null }) {
+function UrgencyBadge({ urgency }) {
   if (!urgency) {
     return (
       <span className="font-mono text-xs uppercase tracking-wide text-muted">

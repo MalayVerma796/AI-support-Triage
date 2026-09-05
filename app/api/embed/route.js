@@ -2,7 +2,7 @@ import { supabase } from '@/lib/supabase'
 import { generateEmbedding } from '@/lib/embeddings'
 import { NextResponse } from 'next/server'
 
-export async function POST(request: Request) {
+export async function POST(request) {
   const { ticketId, subject, body } = await request.json()
 
   const text = `${subject} ${body}`

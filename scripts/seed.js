@@ -4,8 +4,8 @@ import * as dotenv from 'dotenv'
 dotenv.config({ path: '.env.local' })
 
 const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 )
 
 const sampleTickets = [
@@ -76,7 +76,7 @@ const sampleTickets = [
   },
 ]
 
-async function categorize(subject: string, body: string) {
+async function categorize(subject, body) {
   const res = await fetch('http://localhost:3000/api/categorize', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -85,7 +85,7 @@ async function categorize(subject: string, body: string) {
   return res.json()
 }
 
-async function embed(ticketId: string, subject: string, body: string) {
+async function embed(ticketId, subject, body) {
   await fetch('http://localhost:3000/api/embed', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

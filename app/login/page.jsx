@@ -12,7 +12,7 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  async function handleLogin(e: React.FormEvent) {
+  async function handleLogin(e) {
     e.preventDefault();
     setLoading(true);
     setError("");

@@ -1,18 +1,13 @@
-import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import { createClient } from "@/lib/supabase-server";
 import "./globals.css";
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Triage — AI Support Dashboard",
   description: "AI-powered support ticket triage",
 };
 
-export default async function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default async function RootLayout({ children }) {
   const supabase = await createClient();
   const {
     data: { user },

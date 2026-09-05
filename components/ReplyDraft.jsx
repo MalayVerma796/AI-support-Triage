@@ -2,20 +2,10 @@
 
 import { useState } from "react";
 
-type SimilarTicket = {
-  ticket_id: string;
-  subject: string;
-  body: string;
-};
-
 export default function ReplyDraft({
   subject,
   body,
-  similarTickets,
-}: {
-  subject: string;
-  body: string;
-  similarTickets: SimilarTicket[];
+  similarTickets = [],
 }) {
   const [draft, setDraft] = useState("");
   const [loading, setLoading] = useState(false);

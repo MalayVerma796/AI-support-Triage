@@ -4,18 +4,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-type SimilarTicket = {
-  ticket_id: string;
-  subject: string;
-  body: string;
-  similarity: number;
-};
-
-export default async function TicketDetail({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+export default async function TicketDetail({ params }) {
   const { id } = await params;
   const supabase = await createClient();
 
@@ -43,7 +32,7 @@ export default async function TicketDetail({
     .eq("ticket_id", id)
     .single();
 
-  let similarTickets: SimilarTicket[] = [];
+  let similarTickets = [];
 
   if (embeddingRow) {
     const { data: matches } = await supabase.rpc("match_tickets", {
@@ -181,7 +170,7 @@ export default async function TicketDetail({
   );
 }
 
-function StatusTag({ label }: { label: string | null }) {
+function StatusTag({ label }) {
   if (!label) return null;
 
   return (
@@ -191,7 +180,7 @@ function StatusTag({ label }: { label: string | null }) {
   );
 }
 
-function UrgencyTag({ label }: { label: string | null }) {
+function UrgencyTag({ label }) {
   if (!label) return null;
 
   const urgencyClass =

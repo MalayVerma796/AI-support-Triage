@@ -14,7 +14,7 @@ faster without manual sorting.
 - (Coming soon) AI-drafted reply suggestions
 
 ## Tech Stack
-- **Frontend:** Next.js 16 (App Router), TypeScript, Tailwind CSS
+- **Frontend:** Next.js 16 (App Router), JavaScript (React.js), Tailwind CSS
 - **Backend:** Next.js API Routes
 - **Database:** Supabase (PostgreSQL + pgvector)
 - **AI:** Groq API (Llama 3.3 70B) for structured ticket categorization
