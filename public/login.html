@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent Login — Triage</title>
+  <meta name="description" content="Agent sign-in for AI support ticket triage console">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/js/supabase-client.js"></script>
+  <script src="/js/navbar.js"></script>
+  <script src="/js/login.js"></script>
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <main class="main-content">
+    <div class="grid-login">
+      <!-- Left Column -->
+      <section class="card">
+        <div class="pill-badge">Agent Access</div>
+        <h1 class="title-primary" style="font-size: 2.25rem;">
+          Step into the support console.
+        </h1>
+        <p class="subtitle-desc">
+          Sign in to review active tickets, compare historical matches, and
+          generate replies without breaking your workflow.
+        </p>
+      </section>
+
+      <!-- Right Login Form Column -->
+      <section class="card">
+        <div class="card-header">
+          <h2 class="title-secondary">Agent Login</h2>
+          <p class="subtitle-desc">Use your support credentials to continue.</p>
+        </div>
+
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="email" class="form-label">Email</label>
+            <input
+              id="email"
+              type="email"
+              class="form-input"
+              placeholder="agent@company.com"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="password" class="form-label">Password</label>
+            <input
+              id="password"
+              type="password"
+              class="form-input"
+              placeholder="Enter your password"
+              required
+            >
+          </div>
+
+          <button id="loginBtn" type="submit" class="btn-primary btn-full">
+            Log In
+          </button>
+
+          <div id="loginError" class="alert alert-error" style="display: none;"></div>
+        </form>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

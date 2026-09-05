@@ -1,11 +1,13 @@
 {
   "name": "ai-support-triage",
   "version": "0.1.0",
+  "type": "module",
   "private": true,
   "scripts": {
-    "dev": "next dev --webpack",
+    "dev": "node server.js",
+    "start": "node server.js",
+    "server": "node server.js",
     "build": "next build --webpack",
-    "start": "next start",
     "lint": "eslint",
     "seed": "node scripts/seed.js"
   },
@@ -14,6 +16,8 @@
     "@supabase/ssr": "^0.12.4",
     "@supabase/supabase-js": "^2.110.8",
     "@xenova/transformers": "^2.17.2",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
     "next": "16.2.11",
     "openai": "^7.1.0",
     "react": "19.2.4",

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Triage — AI Support Dashboard</title>
+  <meta name="description" content="AI-powered support ticket triage">
+  <link rel="stylesheet" href="/css/style.css">
+  <!-- Supabase JS Client library from official CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/js/supabase-client.js"></script>
+  <script src="/js/navbar.js"></script>
+  <script src="/js/ticket-form.js"></script>
+</head>
+<body>
+  <!-- Dynamic Navigation Bar Header -->
+  <div id="navbar"></div>
+
+  <!-- Main Hero & Ticket Form Container -->
+  <main class="main-content">
+    <div class="grid-two-col">
+      <!-- Left Hero Column -->
+      <section class="card">
+        <div class="pill-badge">AI Support Operations</div>
+        <h1 class="title-primary">
+          A calmer command center for support teams moving fast.
+        </h1>
+        <p class="subtitle-desc">
+          Triage turns incoming support issues into structured, actionable
+          tickets with AI-assisted categorization, urgency scoring, and
+          reply drafting that feels built for focused operator work.
+        </p>
+      </section>
+
+      <!-- Right Ticket Submission Form Column -->
+      <section class="card">
+        <div class="card-header">
+          <h2 class="title-secondary">Submit a new ticket</h2>
+          <p class="subtitle-desc">
+            Capture the issue cleanly so the dashboard can sort, prioritize,
+            and route it with context.
+          </p>
+        </div>
+
+        <form id="ticketForm">
+          <div class="form-group">
+            <label for="subject" class="form-label">Subject</label>
+            <input
+              id="subject"
+              type="text"
+              class="form-input"
+              placeholder="Summarize the issue"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="body" class="form-label">Issue Details</label>
+            <textarea
+              id="body"
+              class="form-textarea"
+              placeholder="Describe what happened, what was expected, and any urgency."
+              rows="6"
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">Customer Email</label>
+            <input
+              id="email"
+              type="email"
+              class="form-input"
+              placeholder="customer@company.com"
+              required
+            >
+          </div>
+
+          <button id="submitBtn" type="submit" class="btn-primary">
+            Submit Ticket
+          </button>
+
+          <div id="formMessage" class="alert" style="display: none;"></div>
+        </form>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
